@@ -1,52 +1,23 @@
-#include <iostream>
+#ifndef SORTS_HPP
+#define SORTS_HPP
+
 #include <vector>
-#include <ctime>
-#include <cstdlib>
 
-using namespace std;
+class Sorts {
+public:
+//Sorts
+    static void bubble_sort(std::vector<int>& arr);
+    static void selection_sort(std::vector<int>& arr);
+    static void insertion_sort(std::vector<int>& arr);
+    static void quickSort(std::vector<int>& arr, int low, int high);
+    static void heapSort(int arr[], int n);
+    static void mergeSort(std::vector<int>& arr, int left, int right);
 
-// Bubble Sort -------------------------------------------------------------------------------------------------------------------------------
-void bubble_sort(vector<int>& arr) {
-    int n = arr.size();
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n - i - 1; ++j) {
-            if (arr[j] > arr[j + 1]) {
-                // Swapping elements
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-}
+private:
+    // Funciones auxiliares
+    static int partition(std::vector<int>& arr, int low, int high);
+    static void heapify(int arr[], int n, int i);
+    static void merge(std::vector<int>& arr, int left, int mid, int right);
+};
 
-// Selection Sort --------------------------------------------------------------------------------------------------------------------------
-void selection_sort(vector<int>& arr) {
-    int n = arr.size();
-    for (int i = 0; i < n; ++i) {
-        int min_index = i;
-        for (int j = i + 1; j < n; ++j) {
-            if (arr[j] < arr[min_index]) {
-                min_index = j;
-            }
-        }
-        // Swap
-        int temp = arr[i];
-        arr[i] = arr[min_index];
-        arr[min_index] = temp;
-    }
-}
-
-// insertion Sort------------------------------------------------------------------------------------------------------------------------
-void insertion_sort(vector<int>& arr) {
-    int n = arr.size();
-    for (int i = 1; i < n; ++i) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = key;
-    }
-}
+#endif
